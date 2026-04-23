@@ -3,6 +3,7 @@ const app = express()
 const movieRoute = require("./routes/movies")
 require('dotenv').config()
 app.use(express.static('public'))
+app.use(cors())
 
 const PORT = process.env.PORT || "my_port"
 
