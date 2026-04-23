@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const movieRoute = require("./routes/movies")
+const cors = require('cors')
 require('dotenv').config()
 app.use(express.static('public'))
 app.use(cors())
