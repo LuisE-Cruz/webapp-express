@@ -38,7 +38,35 @@ const show = (req, res) => {
         })
     })
 }
+
+const store = (req, res) => {
+
+    console.log("--- DEBUG RICHIESTA ---");
+    console.log("Content-Type:", req.headers['content-type']);
+    console.log("Body ricevuto:", req.body);
+
+    const { movie_id, name, vote, text } = req.body
+
+    const mysql = `
+    INSERT INTO reviews (movie_id, name, vote, text)
+    VALUES (?, ?, ?, ?) `
+
+    connection.query(mysql, [movie_id, name, vote, text], (err, results) => {
+        if (err) return res.status(500).json({ error: "Database error" })
+
+        const addReview = {
+            id: results.insertId,
+            movie_id,
+            name,
+            vote,
+            text
+        }
+        res.status(201).json(addReview)
+    })
+}
+
 module.exports = {
     index,
-    show
+    show,
+    store
 }

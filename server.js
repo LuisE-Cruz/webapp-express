@@ -5,11 +5,12 @@ const cors = require('cors')
 require('dotenv').config()
 app.use(express.static('public'))
 app.use(cors())
+app.use(express.json())
 
 const PORT = process.env.PORT || "my_port"
 
 const connection = require("./data/linkup")
-const errorsHandler = require('./middleware/errosHandler')
+const errorsHandler = require('./middleware/errorsHandler')
 const notFound = require('./middleware/notFound')
 
 app.listen(PORT, () => {

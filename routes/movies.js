@@ -7,4 +7,6 @@ router.get('/', moviecontroller.index)
 
 router.get('/:id', moviecontroller.show)
 
+router.post('/', moviecontroller.store)
+
 module.exports = router;
